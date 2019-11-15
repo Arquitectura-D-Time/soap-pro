@@ -3,6 +3,7 @@ var express 	= require("express");
 var app 	= express();
 var bodyParser 	= require('body-parser');
 var request 	= require("request");
+const port = 6001;
  
 // URL con contenido JSON demostrativo.
 var url 	= "https://jsonplaceholder.typicode.com/todos/"
@@ -44,6 +45,6 @@ app.get('/users/:id', function(req, res) {
 	})
 })
  
-var server = app.listen(4200, function () {
-    console.log('Server is running..'); 
+app.listen(port, function () {
+    console.log(`Servidor corriendo en el puerto ${port}.`) 
 });
