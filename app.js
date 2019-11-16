@@ -1,8 +1,8 @@
 const express 	= require("express"); 
 const app 	= express();
-const request = require('./src/request')
+const request = require('./src/getTutorias')
 
-app.use('/', request.users);
+app.use('/tutorias', request.tutorias);
 
 var server = app.listen(3007, function () {
     console.log('Server is running..'); 
