@@ -27,9 +27,9 @@ function splitter_function(args) {
 }
 
 function getTutoriasById(args){
-    console.log('Muestra tutoria por id');
     var id = args.id;
     var response;
+    console.log('Muestra la tutoria del id ' + id);
     return fetch("http://146.148.107.218:5002/tutorias/"+id).then(res => res.json())
     .then(data => {
       console.log(data);
@@ -42,19 +42,43 @@ function getTutoriasById(args){
         idtutor:data.idtutor,
         idtoken:data.idtoken
         }
-    })
-  }
+  })
+}
+
+function getTutoriasByMateria(args){
+  var materia = args.materia;
+  var event = [];
+  console.log('Muestra tutorias de la materia ' + materia);    
+  return fetch("http://146.148.107.218:5002/materia/"+materia).then(res => res.json())
+  .then(data => {
+    console.log(data);
+    var event = [];
+    for(var i = 0; i < data.length; i++){
+      event.push( {
+        id: data[i].id,
+        materia:data[i].materia,
+        descripcion:data[i].descripcion,
+        cupos:data[i].cupos,
+        idtutor:data[i].idtutor,
+        idtoken:data[i].idtoken
+        });
+      }
+      return event;
+  });
+}
 
 // servicio
 var serviceObject = {
     MessageSplitterService: {
           MessageSplitterServiceSoapPort: {
               MessageSplitter: splitter_function,
-              TutoriaByID: getTutoriasById
+              TutoriaByID: getTutoriasById,
+              TutoriaByMateria: getTutoriasByMateria
           },
           MessageSplitterServiceSoap12Port: {
               MessageSplitter: splitter_function,
-              TutoriaByID: getTutoriasById
+              TutoriaByID: getTutoriasById,
+              TutoriaByMateria: getTutoriasByMateria
           }
     }
   };

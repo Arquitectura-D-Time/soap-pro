@@ -47,6 +47,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="TutoriaByMateriaRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="materia" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TutoriaByMateriaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="id" type="s:int"/>
+            <s:element name="materia" type="s:string"/>
+            <s:element name="descripcion" type="s:string"/>
+            <s:element name="cupos" type="s:string"/>
+            <s:element name="idtutor" type="s:int"/>
+            <s:element name="idtoken" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <!-- MESSAGES: defines the data being exchanged between the service and client -->
@@ -62,6 +81,12 @@
   <wsdl:message name="TutoriaByIDSoapOut">
     <wsdl:part name="parameters" element="tns:TutoriaByIDResponse"/>
   </wsdl:message>
+  <wsdl:message name="TutoriaByMateriaSoapIn">
+    <wsdl:part name="parameters" element="tns:TutoriaByMateriaRequest"/>
+  </wsdl:message>
+  <wsdl:message name="TutoriaByMateriaSoapOut">
+    <wsdl:part name="parameters" element="tns:TutoriaByMateriaResponse"/>
+  </wsdl:message>
   <!-- PORT TYPES: defines the complete communication operation (one way/round trip) -->
   <wsdl:portType name="MessageSplitterSoapPort">
     <wsdl:operation name="MessageSplitter">
@@ -71,6 +96,10 @@
     <wsdl:operation name="TutoriaByID">
       <wsdl:input message="tns:TutoriaByIDSoapIn"/>
       <wsdl:output message="tns:TutoriaByIDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="TutoriaByMateria">
+      <wsdl:input message="tns:TutoriaByMateriaSoapIn"/>
+      <wsdl:output message="tns:TutoriaByMateriaSoapOut"/>
     </wsdl:operation>
   </wsdl:portType>
   <!-- BINDING: provides details on how a portType operation will actually be transmitted -->
@@ -87,6 +116,15 @@
     </wsdl:operation>
     <wsdl:operation name="TutoriaByID">
       <soap:operation soapAction="TutoriaByID" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TutoriaByMateria">
+      <soap:operation soapAction="TutoriaByMateria" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -113,6 +151,15 @@
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TutoriaByMateria">
+      <soap:operation soapAction="TutoriaByMateria" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding> 
