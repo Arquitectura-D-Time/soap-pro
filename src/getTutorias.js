@@ -5,7 +5,7 @@ var bodyParser 	= require('body-parser');
 var request 	= require("request");
  
 // URL con contenido JSON demostrativo.
-var url 	= "http://35.202.129.233:5002/tutorias"
+var url 	= "http://146.148.107.218:5002/tutorias"
  
 
 app.use(bodyParser.json());
@@ -26,5 +26,5 @@ var tutorias=app.get('/tutorias', function(req, res) {
 
 
 module.exports = {
-    tutorias,
+	tutorias,
   }
