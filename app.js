@@ -2,6 +2,7 @@
 "use strict";
 
 const express 	= require("express"); 
+var xml = require('xml');
 //const answer = require('./src/expose')
 var soap = require('soap');
 const consume = require('./consume');
@@ -89,13 +90,12 @@ app.get('/', function (req, res) {
 })
 
 app.get('/eventos',(req,res)=>{
-  res.send(consume.answer);
+  res.json(consume.answer);
+  
 })
 
 app.listen(port, function () {
-  console.log(`Servidor SOAP corriendo en el puerto ${port}.`); 
   var wsdl_path = "/wsdl";
   soap.listen(app, wsdl_path, serviceObject, xml);
-  console.log("WSDL en http://localhost:" + port + wsdl_path +"?wsdl");
+  console.log("WSDL en http://146.148.107.218:" + port + wsdl_path +"?wsdl");
 });
-
