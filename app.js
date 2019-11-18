@@ -4,6 +4,7 @@
 const express 	= require("express"); 
 //const answer = require('./src/expose')
 var soap = require('soap');
+const consume = require('./consume');
 var fs = require('fs');
 var xml = fs.readFileSync('tutorias.wsdl', 'utf8');
 var app 	= express();
@@ -87,9 +88,14 @@ app.get('/', function (req, res) {
   res.send('Bienvenido SOAP-Tutorias');
 })
 
+app.get('/eventos',(req,res)=>{
+  res.send(consume.answer);
+})
+
 app.listen(port, function () {
   console.log(`Servidor SOAP corriendo en el puerto ${port}.`); 
   var wsdl_path = "/wsdl";
   soap.listen(app, wsdl_path, serviceObject, xml);
   console.log("WSDL en http://localhost:" + port + wsdl_path +"?wsdl");
 });
+
