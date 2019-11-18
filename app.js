@@ -91,5 +91,5 @@ app.listen(port, function () {
   console.log(`Servidor SOAP corriendo en el puerto ${port}.`); 
   var wsdl_path = "/wsdl";
   soap.listen(app, wsdl_path, serviceObject, xml);
-  console.log("WSDL en http://localhost:" + port + wsdl_path +"?wsdl");
+  console.log("WSDL en http://146.148.107.218:" + port + wsdl_path +"?wsdl");
 });
