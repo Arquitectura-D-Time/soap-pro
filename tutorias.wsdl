@@ -37,13 +37,13 @@
       </s:element>
       <s:element name="TutoriaByIDResponse">
         <s:complexType>
-          <s:sequence>
-            <s:element name="id" type="s:int"/>
-            <s:element name="materia" type="s:string"/>
-            <s:element name="descripcion" type="s:string"/>
-            <s:element name="cupos" type="s:string"/>
-            <s:element name="idtutor" type="s:int"/>
-            <s:element name="idtoken" type="s:string"/>
+          <s:sequence  >
+            <s:element  name="id" type="s:int"/>
+            <s:element  name="materia" type="s:string"/>
+            <s:element  name="descripcion" type="s:string"/>
+            <s:element  name="cupos" type="s:string"/>
+            <s:element  name="idtutor" type="s:int"/>
+            <s:element  name="idtoken" type="s:string"/>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -54,15 +54,15 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TutoriaByMateriaResponse">
+      <s:element  name="TutoriaByMateriaResponse">
         <s:complexType>
-          <s:sequence>
-            <s:element name="id" type="s:int"/>
-            <s:element name="materia" type="s:string"/>
-            <s:element name="descripcion" type="s:string"/>
-            <s:element name="cupos" type="s:string"/>
+          <s:sequence >
+            <s:element  name="id" type="s:int"/>
+            <s:element  name="materia" type="s:string"/>
+            <s:element  name="descripcion" type="s:string"/>
+            <s:element  name="cupos" type="s:string"/>
             <s:element name="idtutor" type="s:int"/>
-            <s:element name="idtoken" type="s:string"/>
+            <s:element   name="idtoken" type="s:string"/>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -166,10 +166,10 @@
   <!-- SERVICE:  -->
   <wsdl:service name="MessageSplitterService">
     <wsdl:port name="MessageSplitterServiceSoapPort" binding="tns:MessageSplitterServiceSoapBinding">
-      <soap:address location="http://146.148.107.218:3007/wsdl"/>
+      <soap:address location="http://localhost:3007/wsdl"/>
     </wsdl:port>
     <wsdl:port name="MessageSplitterServiceSoap12Port" binding="tns:MessageSplitterServiceSoap12Binding">
-      <soap12:address location="http://146.148.107.218:3007/wsdl"/>
+      <soap12:address location="http://localhost:3007/wsdl"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

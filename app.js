@@ -1,12 +1,14 @@
 /*jslint node: true */
 "use strict";
 
-const express 	= require("express"); 
+
 //const answer = require('./src/expose')
 var soap = require('soap');
+const express 	= require("express"); 
 var fs = require('fs');
 var xml = fs.readFileSync('tutorias.wsdl', 'utf8');
 var app 	= express();
+var bodyParser = require('body-parser')
 var fetch = require("node-fetch");
 var port = 3007;
 
@@ -83,6 +85,11 @@ var serviceObject = {
     }
   };
 
+
+
+
+app.use(bodyParser.json());
+
 app.get('/', function (req, res) {
   res.send('Bienvenido SOAP-Tutorias');
 })
@@ -91,5 +98,27 @@ app.listen(port, function () {
   console.log(`Servidor SOAP corriendo en el puerto ${port}.`); 
   var wsdl_path = "/wsdl";
   soap.listen(app, wsdl_path, serviceObject, xml);
-  console.log("WSDL en http://146.148.107.218:" + port + wsdl_path +"?wsdl");
+  console.log("WSDL en http://localhost:" + port + wsdl_path +"?wsdl");
+
+  app.post('/evento', function (req, res) {
+    // console.log(req.body.employee.name);
+     var url = 'http://162.243.164.26:8000/wsdl?wsdl';
+     soap.createClient(url, function (err, client) {
+       if (err){
+         throw err;
+       }
+       var args = {
+        type: "Mascotas"
+       };
+       // call the service
+       console.log(args);
+       client.EventsByType(args, function (err, res) {
+         if (err)
+           throw err;
+           // print the service returned result
+         console.log('respuesta',res); 
+       });
+     });
+
+   });
 });
