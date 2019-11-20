@@ -1,0 +1,1 @@
+{"soap:Envelope":{"$":{"xmlns:soap":"http://schemas.xmlsoap.org/soap/envelope/","xmlns:tns":"http://tempuri.org/","xmlns:tm":"http://microsoft.com/wsdl/mime/textMatching/"},"soap:Body":[{"EventsByTypeResponse":[{"id":["5dd35ae842b6527f3fc9a075"],"name":["asdasd"],"date":["2019-02-11"],"description":["asdasd"],"location":["asdasd"],"type":["Concierto"]}]}]}}

@@ -1,5 +1,6 @@
 const request = require('request');
 var parseString = require('xml2js').parseString;
+var convert = require('xml-js');
 var LocalStorage = require('node-localstorage').LocalStorage;
 
 var xmlBodyStr = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hs="http://www.holidaywebservice.com/HolidayService_v2/">
@@ -38,14 +39,24 @@ var postRequest = {
  };
   
  let answer = (error, response, body) => {
-  if (!error && response.statusCode == 200) {   
-    //console.log('\nRaw result', body);
+  if (!error && response.statusCode == 200) {  
+    console.log('\nEn xml:', body);
 
     parseString(body, function (err, result) {
-      console.log(JSON.stringify(result));
-      result = JSON.stringify(result);
-      var localStorage = new LocalStorage('./scratch');
+      //console.log('\nresultado post: ',result);
+      result = JSON.stringify(result);            
+
+      var localStorage = new LocalStorage('./respuestas');      
+
+      // con result muestra el json 
+      // -> {"soap:Envelope":{"$":{"xmlns:soap":"http://sche...
       localStorage.setItem('resultado', (result));
+      
+      // con body muestra los resultados netos
+      // -> 5dd35ae842b6527f3fc9a075asdasd2019-02-11asdasdasdasdConcierto
+      //localStorage.setItem('resultado', (body));
+
+      console.log('\nlocalstorage:', localStorage.getItem('resultado'))
 
     /*
     var xml2js = require('xml2js');
@@ -61,7 +72,7 @@ var postRequest = {
       */
     });
   };
-  console.log('E', response.statusCode, response.statusMessage);
+  console.log('\nPostman:', response.statusCode, response.statusMessage);
  };
   
  request(postRequest, answer);
