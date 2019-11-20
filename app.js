@@ -11,6 +11,8 @@ var xml = fs.readFileSync('tutorias.wsdl', 'utf8');
 var app 	= express();
 var fetch = require("node-fetch");
 var port = 3007;
+var LocalStorage = require('node-localstorage').LocalStorage;
+var localStorage = new LocalStorage('./scratch');
 
 // app.use('/', answer.tuto);
 
@@ -90,7 +92,9 @@ app.get('/', function (req, res) {
 })
 
 app.get('/eventos',(req,res)=>{
-  res.json(consume.answer);
+  var evento = localStorage.getItem("resultado")
+  res.send(evento);
+  //res.send(console.log(localStorage.getItem("resultado")))
   
 })
 
